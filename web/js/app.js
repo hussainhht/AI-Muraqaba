@@ -6,52 +6,102 @@
 let answers = [];
 let totalPoints = 0;
 let maxPoints = 0;
+let currentLang = 'ar'; // Default language
+let currentTheme = 'dark'; // Default theme
 
 // Hadith and Advice Database
-const hadithDatabase = [
-    {
-        text: "حاسبوا أنفسكم قبل أن تُحاسبوا، وزِنوا أعمالكم قبل أن تُوزن عليكم",
-        source: "الإمام علي بن أبي طالب (ع)"
-    },
-    {
-        text: "من حاسب نفسه ربح، ومن غفل عنها خسر",
-        source: "الإمام علي (ع)"
-    },
-    {
-        text: "إنّ الله يحب العبد المفتش لعيوب نفسه",
-        source: "الإمام جعفر الصادق (ع)"
-    },
-    {
-        text: "ليس منّا من لم يحاسب نفسه في كل يوم",
-        source: "الإمام محمد الباقر (ع)"
-    },
-    {
-        text: "النفس إن لم تشغلها بالحق شغلتك بالباطل",
-        source: "الإمام علي (ع)"
-    }
-];
+const hadithDatabase = {
+    ar: [
+        {
+            text: "حاسبوا أنفسكم قبل أن تُحاسبوا، وزِنوا أعمالكم قبل أن تُوزن عليكم",
+            source: "الإمام علي بن أبي طالب (ع)"
+        },
+        {
+            text: "من حاسب نفسه ربح، ومن غفل عنها خسر",
+            source: "الإمام علي (ع)"
+        },
+        {
+            text: "إنّ الله يحب العبد المفتش لعيوب نفسه",
+            source: "الإمام جعفر الصادق (ع)"
+        },
+        {
+            text: "ليس منّا من لم يحاسب نفسه في كل يوم",
+            source: "الإمام محمد الباقر (ع)"
+        },
+        {
+            text: "النفس إن لم تشغلها بالحق شغلتك بالباطل",
+            source: "الإمام علي (ع)"
+        }
+    ],
+    en: [
+        {
+            text: "Hold yourself accountable before you are held accountable, and weigh your deeds before they are weighed",
+            source: "Imam Ali ibn Abi Talib (AS)"
+        },
+        {
+            text: "Whoever holds himself accountable gains, and whoever neglects it loses",
+            source: "Imam Ali (AS)"
+        },
+        {
+            text: "Indeed, Allah loves the servant who scrutinizes his own faults",
+            source: "Imam Jafar al-Sadiq (AS)"
+        },
+        {
+            text: "He is not from us who does not hold himself accountable every day",
+            source: "Imam Muhammad al-Baqir (AS)"
+        },
+        {
+            text: "If you don't occupy the soul with truth, it will occupy you with falsehood",
+            source: "Imam Ali (AS)"
+        }
+    ]
+};
 
 const spiritualAdvice = {
-    excellent: [
-        "ما شاء الله! أنت على طريق النور الصحيح. استمر في هذا التألق الروحي 🌟",
-        "بارك الله بك! نورك يضيء كالقمر في ليلة مظلمة. حافظ على هذا المستوى 💫",
-        "ممتاز! قلبك متصل بأهل البيت (ع). هذا هو الطريق الحق ✨"
-    ],
-    good: [
-        "أحسنت! لكن لا تزال هناك مساحة للتحسن. استمر في الجهاد الروحي 💪",
-        "جيد جداً! أنت في الطريق الصحيح، فقط نحتاج لمزيد من الالتزام 🌙",
-        "تقدم جميل! حافظ على هذا المستوى وارتقِ أكثر نحو الكمال 🙏"
-    ],
-    moderate: [
-        "لا بأس، لكن يجب أن تبذل جهداً أكبر في محاسبة نفسك 🤲",
-        "هناك مجال كبير للتحسن. تذكر أن كل خطوة صغيرة تقربك من الله 💭",
-        "انتبه! نفسك تحتاج لمزيد من المراقبة والانضباط الروحي ⚠️"
-    ],
-    weak: [
-        "تحذير: أنت بعيد عن الطريق الصحيح. عُد إلى الله قبل فوات الأوان 🚨",
-        "يجب أن تستيقظ روحياً! الغفلة خطر كبير على مستقبلك الأخروي ⛔",
-        "توبة الآن! لا تدع الشيطان يسيطر عليك. ارجع لربك بقلب صادق 🔴"
-    ]
+    ar: {
+        excellent: [
+            "ما شاء الله! أنت على طريق النور الصحيح. استمر في هذا التألق الروحي 🌟",
+            "بارك الله بك! نورك يضيء كالقمر في ليلة مظلمة. حافظ على هذا المستوى 💫",
+            "ممتاز! قلبك متصل بأهل البيت (ع). هذا هو الطريق الحق ✨"
+        ],
+        good: [
+            "أحسنت! لكن لا تزال هناك مساحة للتحسن. استمر في الجهاد الروحي 💪",
+            "جيد جداً! أنت في الطريق الصحيح، فقط نحتاج لمزيد من الالتزام 🌙",
+            "تقدم جميل! حافظ على هذا المستوى وارتقِ أكثر نحو الكمال 🙏"
+        ],
+        moderate: [
+            "لا بأس، لكن يجب أن تبذل جهداً أكبر في محاسبة نفسك 🤲",
+            "هناك مجال كبير للتحسن. تذكر أن كل خطوة صغيرة تقربك من الله 💭",
+            "انتبه! نفسك تحتاج لمزيد من المراقبة والانضباط الروحي ⚠️"
+        ],
+        weak: [
+            "تحذير: أنت بعيد عن الطريق الصحيح. عُد إلى الله قبل فوات الأوان 🚨",
+            "يجب أن تستيقظ روحياً! الغفلة خطر كبير على مستقبلك الأخروي ⛔",
+            "توبة الآن! لا تدع الشيطان يسيطر عليك. ارجع لربك بقلب صادق 🔴"
+        ]
+    },
+    en: {
+        excellent: [
+            "Mashallah! You are on the right path of light. Continue this spiritual excellence 🌟",
+            "May Allah bless you! Your light shines like the moon in a dark night. Keep this level 💫",
+            "Excellent! Your heart is connected to Ahlul Bayt (AS). This is the true path ✨"
+        ],
+        good: [
+            "Well done! But there is still room for improvement. Continue the spiritual struggle 💪",
+            "Very good! You are on the right path, we just need more commitment 🌙",
+            "Beautiful progress! Maintain this level and rise higher towards perfection 🙏"
+        ],
+        moderate: [
+            "Not bad, but you should make a greater effort in self-accountability 🤲",
+            "There is great room for improvement. Remember that every small step brings you closer to Allah 💭",
+            "Attention! Your soul needs more monitoring and spiritual discipline ⚠️"
+        ],
+        weak: [
+            "Warning: You are far from the right path. Return to Allah before it's too late 🚨",
+            "You must wake up spiritually! Negligence is a great danger to your afterlife ⛔",
+            "Repent now! Don't let Satan control you. Return to your Lord with a sincere heart 🔴"
+        ]
+    }
 };
 
 // Initialize App
@@ -59,9 +109,56 @@ document.addEventListener('DOMContentLoaded', () => {
     displayTodayDate();
     calculateMaxPoints();
     initializeCircleGradient();
+    loadLanguagePreference();
+    loadThemePreference();
 });
 
-// Display Today's Date in Arabic
+// Language Toggle Function
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('preferredLanguage', currentLang);
+    applyLanguage();
+}
+
+// Load Language Preference
+function loadLanguagePreference() {
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        currentLang = savedLang;
+        applyLanguage();
+    }
+}
+
+// Apply Language to All Elements
+function applyLanguage() {
+    const html = document.documentElement;
+    const langToggleBtn = document.getElementById('langToggle');
+    
+    // Update HTML attributes
+    if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        langToggleBtn.querySelector('.lang-text').textContent = 'EN';
+        document.title = 'مراقبة - محاسبة النفس';
+    } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        langToggleBtn.querySelector('.lang-text').textContent = 'ع';
+        document.title = 'Muraqaba - Daily Self-Monitoring';
+    }
+    
+    // Update all elements with data-ar and data-en attributes
+    const elements = document.querySelectorAll('[data-ar][data-en]');
+    elements.forEach(element => {
+        const text = currentLang === 'ar' ? element.getAttribute('data-ar') : element.getAttribute('data-en');
+        element.textContent = text;
+    });
+    
+    // Update date display
+    displayTodayDate();
+}
+
+// Display Today's Date in Current Language
 function displayTodayDate() {
     const date = new Date();
     const options = { 
@@ -70,8 +167,39 @@ function displayTodayDate() {
         month: 'long', 
         day: 'numeric' 
     };
-    const arabicDate = date.toLocaleDateString('ar-SA', options);
-    document.getElementById('todayDate').textContent = arabicDate;
+    const locale = currentLang === 'ar' ? 'ar-SA' : 'en-US';
+    const formattedDate = date.toLocaleDateString(locale, options);
+    document.getElementById('todayDate').textContent = formattedDate;
+}
+
+// Theme Toggle Function
+function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('preferredTheme', currentTheme);
+    applyTheme();
+}
+
+// Load Theme Preference
+function loadThemePreference() {
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+        currentTheme = savedTheme;
+    }
+    applyTheme();
+}
+
+// Apply Theme
+function applyTheme() {
+    const body = document.body;
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    if (currentTheme === 'light') {
+        body.classList.add('light-mode');
+        themeIcon.textContent = '☀️';
+    } else {
+        body.classList.remove('light-mode');
+        themeIcon.textContent = '🌙';
+    }
 }
 
 // Calculate Maximum Points
@@ -225,12 +353,12 @@ function submitDay() {
         adviceCategory = 'weak';
     }
     
-    // Select random advice and hadith
-    const advice = spiritualAdvice[adviceCategory][
-        Math.floor(Math.random() * spiritualAdvice[adviceCategory].length)
+    // Select random advice and hadith based on current language
+    const advice = spiritualAdvice[currentLang][adviceCategory][
+        Math.floor(Math.random() * spiritualAdvice[currentLang][adviceCategory].length)
     ];
-    const hadith = hadithDatabase[
-        Math.floor(Math.random() * hadithDatabase.length)
+    const hadith = hadithDatabase[currentLang][
+        Math.floor(Math.random() * hadithDatabase[currentLang].length)
     ];
     
     // Display advice section
@@ -245,9 +373,17 @@ function submitDay() {
         block: 'center'
     });
     
+    // Update submit button text
+    const submitBtn = document.getElementById('submitBtn');
+    const submitBtnText = submitBtn.querySelector('span');
+    if (currentLang === 'ar') {
+        submitBtnText.textContent = '✅ تم إنهاء المحاسبة اليومية';
+    } else {
+        submitBtnText.textContent = '✅ Daily Reflection Completed';
+    }
+    
     // Disable submit button
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('submitBtn').textContent = '✅ تم إنهاء المحاسبة اليومية';
+    submitBtn.disabled = true;
     
     // Disable all answer buttons
     document.querySelectorAll('.answer-buttons button').forEach(btn => {

@@ -16,13 +16,27 @@
         <header class="header">
             <div class="container">
                 <div class="logo">
-                    <h1>✨ مُراقَبة</h1>
-                    <p class="subtitle">محاسبة النفس اليومية</p>
+                    <h1 data-en="✨ Muraqaba" data-ar="✨ مُراقَبة">✨
+                        مُراقَبة</h1>
+                    <p class="subtitle" data-en="Daily Self-Monitoring"
+                        data-ar="محاسبة النفس اليومية">محاسبة النفس اليومية</p>
                 </div>
-                <div class="user-level">
-                    <span class="level-badge">سالك</span>
-                    <span class="noor-count">🌟 <span
-                            id="totalNoor">850</span></span>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle"
+                        onclick="toggleTheme()">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="lang-toggle" id="langToggle"
+                        onclick="toggleLanguage()">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                    <div class="user-level">
+                        <span class="level-badge" data-en="Seeker"
+                            data-ar="سالك">سالك</span>
+                        <span class="noor-count">🌟 <span
+                                id="totalNoor">850</span></span>
+                    </div>
                 </div>
             </div>
         </header>
@@ -44,7 +58,8 @@
                             <div class="circle-content">
                                 <div class="noor-percentage"
                                     id="noorPercentage">0%</div>
-                                <div class="noor-label">نور اليوم</div>
+                                <div class="noor-label" data-en="Today's Light"
+                                    data-ar="نور اليوم">نور اليوم</div>
                             </div>
                         </div>
                     </div>
@@ -53,19 +68,24 @@
 
                 <!-- Daily Questions -->
                 <section class="questions-section">
-                    <h2 class="section-title">💫 محاسبة اليوم</h2>
+                    <h2 class="section-title" data-en="💫 Today's Reflection"
+                        data-ar="💫 محاسبة اليوم">💫 محاسبة اليوم</h2>
 
                     <div class="question-card" data-points="25">
                         <div class="question-icon">🕌</div>
                         <div class="question-content">
-                            <h3>هل صليت الصبح في وقتها؟</h3>
+                            <h3 data-en="Did you pray Fajr on time?"
+                                data-ar="هل صليت الصبح في وقتها؟">هل صليت الصبح
+                                في وقتها؟</h3>
                             <div class="answer-buttons">
                                 <button class="btn-yes"
-                                    onclick="answerQuestion(this, true)">✅
-                                    نعم</button>
+                                    onclick="answerQuestion(this, true)"><span
+                                        data-en="✅ Yes" data-ar="✅ نعم">✅
+                                        نعم</span></button>
                                 <button class="btn-no"
-                                    onclick="answerQuestion(this, false)">❌
-                                    لا</button>
+                                    onclick="answerQuestion(this, false)"><span
+                                        data-en="❌ No" data-ar="❌ لا">❌
+                                        لا</span></button>
                             </div>
                         </div>
                     </div>
@@ -73,14 +93,19 @@
                     <div class="question-card" data-points="25">
                         <div class="question-icon">🤲</div>
                         <div class="question-content">
-                            <h3>هل صليت الظهرين والمغربين؟</h3>
+                            <h3
+                                data-en="Did you pray Dhuhr, Asr, Maghrib, and Isha?"
+                                data-ar="هل صليت الظهرين والمغربين؟">هل صليت
+                                الظهرين والمغربين؟</h3>
                             <div class="answer-buttons">
                                 <button class="btn-yes"
-                                    onclick="answerQuestion(this, true)">✅
-                                    نعم</button>
+                                    onclick="answerQuestion(this, true)"><span
+                                        data-en="✅ Yes" data-ar="✅ نعم">✅
+                                        نعم</span></button>
                                 <button class="btn-no"
-                                    onclick="answerQuestion(this, false)">❌
-                                    لا</button>
+                                    onclick="answerQuestion(this, false)"><span
+                                        data-en="❌ No" data-ar="❌ لا">❌
+                                        لا</span></button>
                             </div>
                         </div>
                     </div>
@@ -88,14 +113,19 @@
                     <div class="question-card" data-points="20">
                         <div class="question-icon">🙊</div>
                         <div class="question-content">
-                            <h3>هل تجنبت الغيبة والكذب اليوم؟</h3>
+                            <h3
+                                data-en="Did you avoid backbiting and lying today?"
+                                data-ar="هل تجنبت الغيبة والكذب اليوم؟">هل تجنبت
+                                الغيبة والكذب اليوم؟</h3>
                             <div class="answer-buttons">
                                 <button class="btn-yes"
-                                    onclick="answerQuestion(this, true)">✅
-                                    نعم</button>
+                                    onclick="answerQuestion(this, true)"><span
+                                        data-en="✅ Yes" data-ar="✅ نعم">✅
+                                        نعم</span></button>
                                 <button class="btn-no"
-                                    onclick="answerQuestion(this, false)">❌
-                                    لا</button>
+                                    onclick="answerQuestion(this, false)"><span
+                                        data-en="❌ No" data-ar="❌ لا">❌
+                                        لا</span></button>
                             </div>
                         </div>
                     </div>
@@ -103,14 +133,19 @@
                     <div class="question-card" data-points="15">
                         <div class="question-icon">📖</div>
                         <div class="question-content">
-                            <h3>هل قرأت زيارة أو دعاء اليوم؟</h3>
+                            <h3
+                                data-en="Did you read Ziyarat or supplications today?"
+                                data-ar="هل قرأت زيارة أو دعاء اليوم؟">هل قرأت
+                                زيارة أو دعاء اليوم؟</h3>
                             <div class="answer-buttons">
                                 <button class="btn-yes"
-                                    onclick="answerQuestion(this, true)">✅
-                                    نعم</button>
+                                    onclick="answerQuestion(this, true)"><span
+                                        data-en="✅ Yes" data-ar="✅ نعم">✅
+                                        نعم</span></button>
                                 <button class="btn-no"
-                                    onclick="answerQuestion(this, false)">❌
-                                    لا</button>
+                                    onclick="answerQuestion(this, false)"><span
+                                        data-en="❌ No" data-ar="❌ لا">❌
+                                        لا</span></button>
                             </div>
                         </div>
                     </div>
@@ -118,14 +153,19 @@
                     <div class="question-card" data-points="15">
                         <div class="question-icon">💝</div>
                         <div class="question-content">
-                            <h3>هل ساعدت أحد أو تصدّقت اليوم؟</h3>
+                            <h3
+                                data-en="Did you help someone or give charity today?"
+                                data-ar="هل ساعدت أحد أو تصدّقت اليوم؟">هل ساعدت
+                                أحد أو تصدّقت اليوم؟</h3>
                             <div class="answer-buttons">
                                 <button class="btn-yes"
-                                    onclick="answerQuestion(this, true)">✅
-                                    نعم</button>
+                                    onclick="answerQuestion(this, true)"><span
+                                        data-en="✅ Yes" data-ar="✅ نعم">✅
+                                        نعم</span></button>
                                 <button class="btn-no"
-                                    onclick="answerQuestion(this, false)">❌
-                                    لا</button>
+                                    onclick="answerQuestion(this, false)"><span
+                                        data-en="❌ No" data-ar="❌ لا">❌
+                                        لا</span></button>
                             </div>
                         </div>
                     </div>
@@ -135,7 +175,8 @@
                 <section class="advice-section" id="adviceSection"
                     style="display: none;">
                     <div class="advice-card">
-                        <h3>🌙 كلمة روحانية</h3>
+                        <h3 data-en="🌙 Spiritual Guidance"
+                            data-ar="🌙 كلمة روحانية">🌙 كلمة روحانية</h3>
                         <p class="advice-text" id="adviceText"></p>
                         <div class="hadith-box">
                             <div class="hadith-icon">📿</div>
@@ -150,7 +191,9 @@
                 <div class="submit-section">
                     <button class="btn-submit" id="submitBtn"
                         onclick="submitDay()" disabled>
-                        إنهاء المحاسبة اليومية
+                        <span data-en="Complete Daily Reflection"
+                            data-ar="إنهاء المحاسبة اليومية">إنهاء المحاسبة
+                            اليومية</span>
                     </button>
                 </div>
             </div>
@@ -159,7 +202,10 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="container">
-                <p>❤️ "حاسبوا أنفسكم قبل أن تُحاسبوا" - الإمام علي (ع)</p>
+                <p
+                    data-en='❤️ "Hold yourself accountable before you are held accountable" - Imam Ali (AS)'
+                    data-ar='❤️ "حاسبوا أنفسكم قبل أن تُحاسبوا" - الإمام علي (ع)'>❤️
+                    "حاسبوا أنفسكم قبل أن تُحاسبوا" - الإمام علي (ع)</p>
                 <p class="footer-note">AI Muraqaba © 2025</p>
             </div>
         </footer>

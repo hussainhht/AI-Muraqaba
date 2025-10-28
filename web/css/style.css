@@ -20,14 +20,34 @@
     --shadow: rgba(0, 0, 0, 0.15);
     --success: #28a745;
     --danger: #dc3545;
+    --card-bg: #ffffff;
+    --body-gradient-start: #1a1a2e;
+    --body-gradient-end: #16213e;
+    --header-bg: rgba(26, 26, 46, 0.9);
+    --footer-bg: rgba(26, 26, 46, 0.9);
+}
+
+/* Light Mode Colors */
+body.light-mode {
+    --primary-color: #f8f9fa;
+    --secondary-color: #e9ecef;
+    --text-light: #2c2c2c;
+    --text-dark: #1a1a1a;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --body-gradient-start: #f0f2f5;
+    --body-gradient-end: #e3e8ed;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --footer-bg: rgba(255, 255, 255, 0.95);
 }
 
 body {
     font-family: 'Tajawal', Arial, sans-serif;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, var(--body-gradient-start) 0%, var(--body-gradient-end) 100%);
     min-height: 100vh;
     color: var(--text-dark);
     direction: rtl;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -40,13 +60,18 @@ body {
    Header Styles
    ======================================== */
 .header {
-    background: rgba(26, 26, 46, 0.9);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
     padding: 20px 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: background 0.3s ease;
+}
+
+body.light-mode .header {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header .container {
@@ -68,6 +93,88 @@ body {
     font-size: 0.9rem;
     font-weight: 300;
     opacity: 0.8;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    width: 45px;
+    height: 45px;
+}
+
+.theme-toggle:hover {
+    background: var(--accent-gold);
+    transform: rotate(20deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.theme-icon {
+    transition: transform 0.3s ease;
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(106, 76, 147, 0.1);
+}
+
+body.light-mode .theme-icon {
+    transform: rotate(180deg);
+}
+
+.lang-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'Tajawal', Arial, sans-serif;
+}
+
+.lang-toggle:hover {
+    background: var(--accent-gold);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+body.light-mode .lang-toggle {
+    background: rgba(106, 76, 147, 0.1);
+    color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+body.light-mode .lang-toggle:hover {
+    background: var(--accent-purple);
+    color: white;
+}
+
+.lang-icon {
+    font-size: 1.2rem;
+}
+
+.lang-text {
+    font-weight: 700;
 }
 
 .user-level {
@@ -183,7 +290,7 @@ body {
 }
 
 .question-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 20px;
@@ -194,6 +301,11 @@ body {
     transition: all 0.3s ease;
     opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
+}
+
+body.light-mode .question-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .question-card:nth-child(1) { animation-delay: 0.1s; }
@@ -283,10 +395,16 @@ body {
 }
 
 .advice-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 8px 30px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+body.light-mode .advice-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .advice-card h3 {
@@ -387,16 +505,21 @@ body {
    Footer
    ======================================== */
 .footer {
-    background: rgba(26, 26, 46, 0.9);
+    background: var(--footer-bg);
     padding: 30px 0;
     text-align: center;
     margin-top: 60px;
+    transition: background 0.3s ease;
 }
 
 .footer p {
     color: var(--text-light);
     font-size: 1.1rem;
     margin-bottom: 10px;
+}
+
+body.light-mode .footer p {
+    color: var(--text-dark);
 }
 
 .footer-note {
@@ -435,9 +558,28 @@ body {
         font-size: 1.5rem;
     }
     
+    .header-controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .lang-toggle {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
     .user-level {
         flex-direction: column;
         gap: 5px;
+        width: 100%;
+        justify-content: center;
     }
     
     .noor-percentage {
